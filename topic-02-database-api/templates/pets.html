@@ -10,9 +10,6 @@
     </head>
     <body>
         <h1>List of Pets</h1> 
-        <hr/>
-        {{ data }}    
-        <hr/>
         <table class="table">
             {% for item in data %}
             <tr>
@@ -27,6 +24,12 @@
                 </td>
                 <td>
                     {{item["noise"]}}
+                </td>
+                <td>
+                    <a href="/edit/{{item['id']}}">Edit</a>
+                </td>
+                <td>
+                    <a href="/delete/{{item['id']}}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
