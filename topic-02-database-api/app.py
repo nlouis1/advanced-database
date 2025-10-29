@@ -6,7 +6,7 @@ import sqlite3
 
 app = Flask(__name__)
 
-connection = sqlite3.connect("pets.db", check_same_thread=False)
+connection = sqlite3.connect("example1.db", check_same_thread=False)
 
 @app.route("/", methods=["GET"])
 @app.route("/pets",methods=["GET"])
@@ -40,20 +40,20 @@ def post_create():
     cursor.execute("insert into pet (name, kind, noise, food) values (?, ?, ?, ?)", (name, kind, noise, food))
     connection.commit()
 
-    return redirect(url_for("get_pets"))
+    return redirect("/")
 
 @app.route("/edit/<id>", methods=["GET"])
 def get_edit(id):
     cursor = connection.cursor()
     row = cursor.execute("select * from pet where id = ?", (id,)).fetchone()
-    pet = {
+    data = {
         "id":str(row[0]),
         "name":row[1],
         "kind":row[2],
         "noise":row[3],
         "food":row[4]
     }
-    return render_template("edit.html", pet=pet)
+    return render_template("edit.html", pet = data)
 
 @app.route("/edit/<id>", methods=["POST"])
 def post_edit(id):
