@@ -37,6 +37,7 @@ def create_database():
         {'name':'Dorothy', 'age':1, "kind_name":"Dog", 'owner':'Elizabeth'},
         {'name':'Heidi', 'age':4, "kind_name":"Dog",'owner':'David'}
     ]
+    pprint(pets)
     for pet in pets:
         for kind in kinds:
             if kind["kind_name"] == pet["kind_name"]:
